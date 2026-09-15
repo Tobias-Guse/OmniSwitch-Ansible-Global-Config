@@ -5,7 +5,7 @@
 
   tasks:
     - name: Show System
-      raw: show system
+      raw: "show system"
       register: result
 
     - name: Display Output
