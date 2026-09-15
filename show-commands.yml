@@ -1,0 +1,46 @@
+---
+- name: OmniSwitch Status Check
+  hosts: all
+  gather_facts: false
+
+  tasks:
+
+    - name: Show System
+      raw: "show system"
+      register: system_output
+
+    - name: Show Health
+      raw: "show health"
+      register: health_output
+
+    - name: Show VLAN
+      raw: "show vlan"
+      register: vlan_output
+
+    - name: Show VLAN Members
+      raw: "show vlan members"
+      register: vlan_members_output
+
+    - name: Show Interface Status
+      raw: "show interfaces status"
+      register: interface_output
+
+    - name: Display System
+      debug:
+        var: system_output.stdout
+
+    - name: Display Health
+      debug:
+        var: health_output.stdout
+
+    - name: Display VLAN
+      debug:
+        var: vlan_output.stdout
+
+    - name: Display VLAN Members
+      debug:
+        var: vlan_members_output.stdout
+
+    - name: Display Interface Status
+      debug:
+        var: interface_output.stdout
