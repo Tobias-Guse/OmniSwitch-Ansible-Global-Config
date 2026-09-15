@@ -2,13 +2,10 @@
 - name: OmniSwitch Test
   hosts: all
   gather_facts: false
-
   tasks:
     - name: Show System
       raw: "show system"
       register: result
-
     - name: Display Output
       debug:
         var: result.stdout
-`
