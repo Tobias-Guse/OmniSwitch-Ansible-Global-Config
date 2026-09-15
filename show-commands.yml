@@ -18,18 +18,12 @@
     - name: Show Interface Status
       raw: "show interfaces status"
       register: interface_output
-    - name: Display System
+    - name: Display Report
       debug:
-        var: system_output.stdout
-    - name: Display Health
-      debug:
-        var: health_output.stdout
-    - name: Display VLAN
-      debug:
-        var: vlan_output.stdout
-    - name: Display VLAN Members
-      debug:
-        var: vlan_members_output.stdout
-    - name: Display Interface Status
-      debug:
-        var: interface_output.stdout
+        msg:
+          hostname: "{{ inventory_hostname }}"
+          system: "{{ system_output.stdout }}"
+          health: "{{ health_output.stdout }}"
+          vlan: "{{ vlan_output.stdout }}"
+          vlan_members: "{{ vlan_members_output.stdout }}"
+          interfaces: "{{ interface_output.stdout }}"
