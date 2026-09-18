@@ -1,36 +1,41 @@
----
 - name: OmniSwitch Status Check
   hosts: all
   gather_facts: false
+
   tasks:
     - name: Show System
       raw: "show system"
       register: system_output
+
     - name: Show Health
       raw: "show health"
       register: health_output
+
     - name: Show VLAN
       raw: "show vlan"
       register: vlan_output
+
     - name: Show VLAN Members
       raw: "show vlan members"
       register: vlan_members_output
+
     - name: Show Interface Status
       raw: "show interfaces status"
       register: interface_output
       changed_when: false
+
     - name: Show Configuration Snapshot
       raw: "show configuration snapshot"
       register: snapshot_output
       changed_when: false
-      
-      - name: Display Report
+
+    - name: Display Report
       debug:
-      msg:
-        hostname: "{{ inventory_hostname }}"
-        system: "{{ system_output.stdout }}"
-        health: "{{ health_output.stdout }}"
-        vlan: "{{ vlan_output.stdout }}"
-        vlan_members: "{{ vlan_members_output.stdout }}"
-        interfaces: "{{ interface_output.stdout }}"
-        snapshot: "{{ snapshot_output.stdout }}"
+        msg:
+          hostname: "{{ inventory_hostname }}"
+          system: "{{ system_output.stdout }}"
+          health: "{{ health_output.stdout }}"
+          vlan: "{{ vlan_output.stdout }}"
+          vlan_members: "{{ vlan_members_output.stdout }}"
+          interfaces: "{{ interface_output.stdout }}"
+          snapshot: "{{ snapshot_output.stdout }}"
