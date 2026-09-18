@@ -18,6 +18,9 @@
     - name: Show Interface Status
       raw: "show interfaces status"
       register: interface_output
+    - name: show configuarion snapshot
+      raw: "show configuarion snapshot"
+      register: snapshot_output
     - name: Display Report
       debug:
         msg:
@@ -27,3 +30,4 @@
           vlan: "{{ vlan_output.stdout }}"
           vlan_members: "{{ vlan_members_output.stdout }}"
           interfaces: "{{ interface_output.stdout }}"
+          interfaces: "{{ snapshot_output.stdout }}"
