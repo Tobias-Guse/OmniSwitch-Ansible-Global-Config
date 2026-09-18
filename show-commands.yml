@@ -18,16 +18,19 @@
     - name: Show Interface Status
       raw: "show interfaces status"
       register: interface_output
-    - name: show configuarion snapshot
-      raw: "show configuarion snapshot"
+      changed_when: false
+    - name: Show Configuration Snapshot
+      raw: "show configuration snapshot"
       register: snapshot_output
-    - name: Display Report
+      changed_when: false
+      
+      - name: Display Report
       debug:
-        msg:
-          hostname: "{{ inventory_hostname }}"
-          system: "{{ system_output.stdout }}"
-          health: "{{ health_output.stdout }}"
-          vlan: "{{ vlan_output.stdout }}"
-          vlan_members: "{{ vlan_members_output.stdout }}"
-          interfaces: "{{ interface_output.stdout }}"
-          interfaces: "{{ snapshot_output.stdout }}"
+      msg:
+        hostname: "{{ inventory_hostname }}"
+        system: "{{ system_output.stdout }}"
+        health: "{{ health_output.stdout }}"
+        vlan: "{{ vlan_output.stdout }}"
+        vlan_members: "{{ vlan_members_output.stdout }}"
+        interfaces: "{{ interface_output.stdout }}"
+        snapshot: "{{ snapshot_output.stdout }}"
